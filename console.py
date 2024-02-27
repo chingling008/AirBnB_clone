@@ -171,5 +171,6 @@ def parse(line):
     """Parses a given string, and returns a list"""
     return shlex.split(line)
 
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
