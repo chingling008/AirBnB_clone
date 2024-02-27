@@ -1,84 +1,66 @@
-Background Context
-Welcome to the AirBnB clone project!
-Before starting, please read the AirBnB concept page.
+# AirBnB Clone
 
-First step: Write a command interpreter to manage your AirBnB objects.
-This is the first step towards building your first full web application: the AirBnB clone. This first step is very important because you will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end integration…
+## Description
 
-Each task is linked and will help you to:
+This is the first of several lite clones of the [AirBnB](https://www.airbnb.com) (online platform for rental accommodations) website. It specifies classes for __User__, __Place__, __State__, __City__, __Amenity__, and __Review__ that inherit from the __BaseModel__ class. Instances are serialized and saved to a JSON file then reloaded and deserialized back into instances. Additionally, there is a simple command line interface (CLI) or 'console' that abstracts the process used to create these instances.
 
-put in place a parent class (called BaseModel) to take care of the initialization, serialization and deserialization of your future instances
-create a simple flow of serialization/deserialization: Instance <-> Dictionary <-> JSON string <-> file
-create all classes used for AirBnB (User, State, City, Place…) that inherit from BaseModel
-create the first abstracted storage engine of the project: File storage.
-create all unittests to validate all our classes and storage engine
-What’s a command interpreter?
-Do you remember the Shell? It’s exactly the same but limited to a specific use-case. In our case, we want to be able to manage the objects of our project:
+## Requirements
+Python 3.4.3 or later
 
-Create a new object (ex: a new User or a new Place)
-Retrieve an object from a file, a database etc…
-Do operations on objects (count, compute stats, etc…)
-Update attributes of an object
-Destroy an object
-Resources
-Read or watch:
+## Usage
 
-cmd module
-cmd module in depth
-packages concept page
-uuid module
-datetime
-unittest module
-args/kwargs
-Python test cheatsheet
-cmd module wiki page
-python unittest
-Learning Objectives
-At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+The console can run in two modes: *interactive* and *non-interactive*:
 
-General
-How to create a Python package
-How to create a command interpreter in Python using the cmd module
-What is Unit testing and how to implement it in a large project
-How to serialize and deserialize a Class
-How to write and read a JSON file
-How to manage datetime
-What is an UUID
-What is *args and how to use it
-What is **kwargs and how to use it
-How to handle named arguments in a function
-Copyright - Plagiarism
-You are tasked to come up with solutions for the tasks below yourself to meet with the above learning objectives.
-You will not be able to meet the objectives of this or any following project by copying and pasting someone else’s work.
-You are not allowed to publish any content of this project.
-Any form of plagiarism is strictly forbidden and will result in removal from the program.
-Requirements
-Python Scripts
-Allowed editors: vi, vim, emacs
-All your files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.5)
-All your files should end with a new line
-The first line of all your files should be exactly #!/usr/bin/python3
-A README.md file, at the root of the folder of the project, is mandatory
-Your code should use the pycodestyle (version 2.8.*)
-All your files must be executable
-The length of your files will be tested using wc
-All your modules should have a documentation (python3 -c 'print(__import__("my_module").__doc__)')
-All your classes should have a documentation (python3 -c 'print(__import__("my_module").MyClass.__doc__)')
-All your functions (inside and outside a class) should have a documentation (python3 -c 'print(__import__("my_module").my_function.__doc__)' and python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)')
-A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
-Python Unit Tests
-Allowed editors: vi, vim, emacs
-All your files should end with a new line
-All your test files should be inside a folder tests
-You have to use the unittest module
-All your test files should be python files (extension: .py)
-All your test files and folders should start by test_
-Your file organization in the tests folder should be the same as your project
-e.g., For models/base_model.py, unit tests must be in: tests/test_models/test_base_model.py
-e.g., For models/user.py, unit tests must be in: tests/test_models/test_user.py
-All your tests should be executed by using this command: python3 -m unittest discover tests
-You can also test file by file by using this command: python3 -m unittest tests/test_models/test_base_model.py
-All your modules should have a documentation (python3 -c 'print(__import__("my_module").__doc__)')
-All your classes should have a documentation (python3 -c 'print(__import__("my_module").MyClass.__doc__)')
-All your functions (inside and outside a class) should have a documentation (python3 -c 'print(__import__("my_module").my_function.__doc__)' and python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)')
-We strongly encourage you to work together on test cases, so that you don’t miss any edge case
+### Interactive mode
+
+To run the console in *interactive* mode type:
+
+```$ ./console.py```
+
+This prompt will appear:
+
+```(hbnb) ```
+
+### Storage
+
+Instances of classes are saved in a [JSON](https://www.json.org) string representation to the __file.json__ file at the root directory. Any modifications (additions, deletions, updates) to the objects are saved automatically to the file. The JSON file serves as a simple database that helps the data persist across sessions. 
+
+### Tests
+
+Testing is imperative to building any robust program therefore we have included a comprehensive testing suite using the Python [unittest module](https://docs.python.org/3.4/library/unittest.html)
+
+To run the entire unittest suite in one go, run the following command from the root directory:
+
+```bash
+$ python3 -m unittest discover tests
+............................................................
+----------------------------------------------------------------------
+Ran 60 tests in 0.017s
+
+OK
+```
+
+If you want to run tests individually, an example would be:
+
+```bash
+$ python3 -m unittest tests/test_models/test_base_model.py
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.003s
+
+OK
+```
+
+### Supported Commands
+
+Name | Description | Use
+-------- | ----------- |-------- |
+help | Displays help information for a command | help [command]
+quit | Exits/quits the program | quit
+EOF | Exits the program when files are passed into the program | N/A
+create | Creates a new instance of a specified class | create [class_name]
+show | Prints the string representation of an instance | show [class_name] [id]
+destroy | Deletes an instance | destroy [class_name] [id]
+all | Prints the string representation of all instances of a class| all or all [class_name] [id]
+update | Adds or modifies attributes of an instance | update [class_name] [id] [attribute] [value]
+
